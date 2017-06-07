@@ -12,6 +12,8 @@ namespace diplom
         public Form1()
         {
             InitializeComponent();
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.Items.AddRange(new string[] {"Всё включено", "Выключен монитор", "Всё выключено" });
         }
         private void Take()
         {
@@ -66,14 +68,17 @@ namespace diplom
         }
         private void print()
         {
-            for(int i = 1; i < dataGridView1.Rows.Count; i++)
-            {
-                int x = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
-                int y = Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value);
-                chart1.Series[0].Points.AddXY(x, y);
-
-            }
+                   
             
+            
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    int x = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                    int y = Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value);              
+                    chart1.Series[0].Points.AddXY(x, y);
+
+                }
+           
         }
    
 
@@ -102,5 +107,11 @@ namespace diplom
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            string selectedState = comboBox1.SelectedItem.ToString();            
+        }
     }
 }
+
